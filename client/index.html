@@ -4,8 +4,9 @@
     <title>Back End Assessment</title>
   </head>
   <body class="container">
-    <button id="complimentButton">Get a compliment</button>
+    <button id="complimentButton">Get a compliment!</button>
     <button id="fortuneButton">Get your fortune!</button>
+    <input placeholder="Ask me a yes/no question!"><button type="submit" id="magic8ball">Ask</button></input>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
@@ -23,6 +24,13 @@
             alert(data);
           });
       };
+      document.getElementById("magic8ball").onclick = function () {
+        axios.get("http://localhost:4000/api/eightball/")
+          .then(function (response) {
+            const data = response.data;
+            alert(data);
+          });
+      };      
 
     </script>
   </body>

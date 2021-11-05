@@ -30,12 +30,21 @@ app.get("/api/fortune", (req, res) => {
     "What does that say about yourself, the fact that you're asking an internet button for your fortune?",
   ];
   
+  let randomIndex = Math.floor(Math.random() * fortunes.length);
+  let randomFortune = fortunes[randomIndex];
 
-let randomIndex = Math.floor(Math.random() * fortunes.length);
-let randomFortune = fortunes[randomIndex];
-
-res.status(200).send(randomFortune);
+  res.status(200).send(randomFortune);
   
+});
+
+app.get("/api/eightball", (req, res) => {
+  const ballAnswers = ["It is certain", "Most definitely", "Yes", "Signs point to Yes", "Hmm... let me think about it", "You really don't want to know the answer to that", "Concentrate and ask again", "Hell no", "I wouldn't coun't on it", "Negative, ghost-rider",];
+  
+  let randomIndex = Math.floor(Math.random() * ballAnswers.length);
+  let randomAnswer = ballAnswers[randomIndex];
+
+  res.status(200).send(randomAnswer);
+
 });
 
 app.listen(4000, () => console.log("Server running on 4000"));
