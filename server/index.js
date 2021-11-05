@@ -47,4 +47,9 @@ app.get("/api/eightball", (req, res) => {
 
 });
 
+app.get("/api/horoscope", (req, res) => {
+  const horoscopeAnswers = ["Spread your wings and take flight, Pisces! Exploration is the name of the game starting today, as the only Scorpio new moon of 2021 supercharges your worldly ninth house. Over the next six months, expanding your worldview will lead to profound satisfaction. This is not the time to play it safe. Boldly venture into new territory, whether you jet-set to an awe-inspiring locale, launch your passion project, or start learning a new skill set for an entirely different career! For now, don’t worry about the nitty-gritty details. Focus on big-picture manifesting instead. Once you’ve got the broad strokes, then you can dive into the details."];
+  res.status(200).send(horoscopeAnswers);
+})
+
 app.listen(4000, () => console.log("Server running on 4000"));
