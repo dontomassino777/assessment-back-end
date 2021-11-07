@@ -31,19 +31,23 @@ const errCallback = err => console.log(err)
 const getGoals = () => axios.get(baseURL).then(goalsCallback).catch(errCallback)
 const createGoals = body => axios.post(baseURL, body).then(goalsCallback).catch(errCallback)
 const deleteGoals = id => axios.delete(`${baseURL}${id}`).then(goalsCallback).catch(errCallback)
+const updateGoals = (id, type) => axios.put(`${baseURL}${id}`, {type}).then(goalsCallback).catch(errCallback)
 
 function submitHandler(event) {
     event.preventDefault()
     let description = document.querySelector('#goal-description')
+    let date = document.querySelector('#goal-date')
     let imageURL = document.querySelector('#goal-image')
     let bodyObj = {
         description: description.value,
+        date: +date.value,
         imageURL: imageURL.value
     }
 
     createGoals(bodyObj)
 
     description.value = ''
+    date.value = ''
     imageURL.value = ''
 }
 
@@ -53,6 +57,11 @@ function createGoalCard(goal) {
     goalCard.innerHTML = 
         `<img src="${goal.imageURL}"/>
         <p>Goal: ${goal.description}</p>
+        <div class="btns-container">
+            <p>Month to complete by: ${goal.date}/2022</p>
+            <button onClick="updateGoals(${goal.id}, 'minus')">-</button>
+            <button onClick="updateGoals(${goal.id}, 'plus')">+</button>
+        </div>
         <button onclick="deleteGoals(${goal.id})">Remove</button>
         `
     goalsContainer.appendChild(goalCard)

@@ -47,10 +47,11 @@ app.get("/api/eightball", (req, res) => {
 
 });
 
-const {getGoals, createGoals, deleteGoals} = require("./controller.js");
+const {getGoals, createGoals, deleteGoals, updateGoals} = require("./controller.js");
 
 app.get("/api/goals", getGoals);
 app.post("/api/goals", createGoals);
 app.delete("/api/goals/:id", deleteGoals);
+app.put("/api/goals/:id", updateGoals);
 
 app.listen(4000, () => console.log("Server running on 4000"));
