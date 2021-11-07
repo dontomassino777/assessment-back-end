@@ -38,7 +38,7 @@ app.get("/api/fortune", (req, res) => {
 });
 
 app.get("/api/eightball", (req, res) => {
-  const ballAnswers = ["It is certain", "Most definitely", "Yes", "Signs point to Yes", "Hmm... let me think about it", "You really don't want to know the answer to that", "Concentrate and ask again", "Hell no", "I wouldn't coun't on it", "Negative, ghost-rider",];
+  const ballAnswers = ["It is certain", "Most definitely", "Yes", "Signs point to Yes", "Hmm... let me think about it", "You really don't want to know the answer to that", "Concentrate and ask again", "Hell yeah!", "Ask me again later", "Negative, ghost-rider",];
   
   let randomIndex = Math.floor(Math.random() * ballAnswers.length);
   let randomAnswer = ballAnswers[randomIndex];
@@ -47,9 +47,10 @@ app.get("/api/eightball", (req, res) => {
 
 });
 
-app.get("/api/horoscope", (req, res) => {
-  const horoscopeAnswers = ["Spread your wings and take flight, Pisces! Exploration is the name of the game starting today, as the only Scorpio new moon of 2021 supercharges your worldly ninth house. Over the next six months, expanding your worldview will lead to profound satisfaction. This is not the time to play it safe. Boldly venture into new territory, whether you jet-set to an awe-inspiring locale, launch your passion project, or start learning a new skill set for an entirely different career! For now, don’t worry about the nitty-gritty details. Focus on big-picture manifesting instead. Once you’ve got the broad strokes, then you can dive into the details."];
-  res.status(200).send(horoscopeAnswers);
-})
+const {getGoals, createGoals, deleteGoals} = require("./controller.js");
+
+app.get("/api/goals", getGoals);
+app.post("/api/goals", createGoals);
+app.delete("/api/goals/:id", deleteGoals);
 
 app.listen(4000, () => console.log("Server running on 4000"));
